@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spesial Untuk Fitri Hasanah ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Great+Vibes&family=Poppins:wght@400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            position: relative;
+            padding: 15px;
+        }
+
+        /* ----------------------------------
+           BAGIAN PAGE 1: KARTU 3D ULTAH
+        ---------------------------------- */
+        #page1 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .bg-flower {
+            position: absolute;
+            font-size: 26px;
+            opacity: 0.5;
+            animation: floatBg 6s infinite ease-in-out;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .f1 { top: 8%; left: 8%; animation-delay: 0s; }
+        .f2 { top: 15%; right: 10%; animation-delay: 1.5s; }
+        .f3 { bottom: 12%; left: 10%; animation-delay: 3s; }
+        .f4 { bottom: 8%; right: 8%; animation-delay: 4.5s; }
+
+        .card-3d {
+            position: relative;
+            width: 320px;
+            height: 480px;
+            background-color: #ffffff;
+            transform-style: preserve-3d;
+            transform: perspective(2000px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .card-3d:hover, .card-3d.open {
+            transform: perspective(2000px) rotateY(15deg) rotateX(5deg);
+            box-shadow: -10px 25px 50px rgba(233, 30, 99, 0.25);
+        }
+
+        .card-3d:hover .cover, .card-3d.open .cover {
+            transform: rotateY(-140deg);
+        }
+
+        .cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            z-index: 2;
+            transform-origin: left;
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+            transform-style: preserve-3d;
+            border-radius: 20px;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.06);
+            border: 1px solid #ffeef1;
+        }
+
+        .cover-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 20px;
+            text-align: center;
+            background: radial-gradient(circle, #ffffff 60%, #fff5f7 100%);
+            border-radius: 20px;
+        }
+
+        .corner-flowers {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 22px;
+        }
+
+        .cover-front h2 {
+            font-family: 'Great Vibes', cursive;
+            color: #d63031;
+            font-size: 40px;
+            margin-top: -5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .flower-bundle {
+            font-size: 68px;
+            line-height: 1;
+            margin: 5px 0;
+            filter: drop-shadow(0 8px 12px rgba(225, 112, 85, 0.25));
+            animation: pulse 2.5s infinite ease-in-out;
+        }
+
+        .date-badge {
+            background: linear-gradient(45deg, #ff7675, #d63031);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(214, 48, 49, 0.3);
+        }
+
+        /* Tombol Buka Surat di Bawah 19 Desember */
+        .btn-open-inside {
+            background: linear-gradient(45deg, #e91e63, #ff4081);
+            color: white;
+            border: none;
+            padding: 9px 22px;
+            border-radius: 25px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(233, 30, 99, 0.35);
+            margin-top: 5px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-open-inside:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(233, 30, 99, 0.5);
+        }
+
+        .cover-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fff0f3 0%, #ffe4e8 100%);
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+            border-radius: 20px;
+        }
+
+        .details {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 30px 22px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .details h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 34px;
+            color: #e84393;
+            margin-bottom: 12px;
+            line-height: 1.1;
+        }
+
+        .details p {
+            font-family: 'Caveat', cursive;
+            font-size: 21px;
+            color: #2d3436;
+            line-height: 1.35;
+            margin-bottom: 4px;
+        }
+
+        .sender {
+            font-family: 'Poppins', sans-serif !important;
+            font-size: 12px !important;
+            color: #d63031 !important;
+            font-weight: 600;
+            margin-top: 12px !important;
+        }
+
+        .btn-next {
+            margin-top: 16px;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #e91e63, #ff4081);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.35);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.5);
+        }
+
+        /* ----------------------------------
+           BAGIAN PAGE 2: PESAN BALIKAN
+        ---------------------------------- */
+        #page2 {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-balikan {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 35px 25px;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(255, 105, 135, 0.25);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            animation: fadeIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .heart-icon {
+            font-size: 52px;
+            animation: pulse 1.2s infinite ease-in-out;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .card-balikan h1 {
+            font-family: 'Sacramento', cursive;
+            font-size: 3rem;
+            color: #e91e63;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        p.subtitle {
+            color: #555;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .question {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            line-height: 1.35;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            min-height: 120px;
+            width: 100%;
+        }
+
+        .btn-yes {
+            background: linear-gradient(45deg, #ff4081, #e91e63);
+            color: white;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 2;
+            white-space: nowrap;
+        }
+
+        /* Kelas saat tombol "Mau Banget" sendiri & membesar di tengah */
+        .btn-yes.centered-large {
+            transform: scale(1.4) !important;
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.5);
+        }
+
+        .btn-no {
+            background-color: #f1f2f6;
+            color: #57606f;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+            z-index: 1;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: inline-block;
+        }
+
+        /* Modal Popup */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .popup-content h2 { 
+            color: #e91e63; 
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .popup-content p { 
+            color: #666; 
+            font-size: 0.95rem; 
+            line-height: 1.5;
+            margin-bottom: 22px; 
+        }
+
+        .wa-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+            transition: transform 0.2s ease;
+        }
+
+        .wa-btn:hover {
+            transform: scale(1.04);
+        }
+
+        /* Keyframes Animasi */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.12); }
+        }
+
+        @keyframes floatBg {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(15deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.92); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.6); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-height: 650px) {
+            .card-3d {
+                width: 280px;
+                height: 420px;
+            }
+            .flower-bundle { font-size: 58px; }
+            .details h2 { font-size: 28px; }
+            .details p { font-size: 18px; }
+            .card-balikan h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="page1">
+        <div class="bg-flower f1">🌸</div>
+        <div class="bg-flower f2">🌺</div>
+        <div class="bg-flower f3">🌷</div>
+        <div class="bg-flower f4">🌹</div>
+
+        <div class="card-3d" id="birthdayCard" onclick="toggleCard(event)">
+            <div class="cover">
+                <div class="cover-front">
+                    <div class="corner-flowers"><span>🌸</span><span>🌺</span></div>
+                    <h2>Happy Birthday</h2>
+                    <div class="flower-bundle">💐🌹🌷</div>
+                    <div class="date-badge">📅 19 Desember</div>
+                    
+                    <button class="btn-open-inside" onclick="toggleCard(event)">✉️ Buka Surat</button>
+                    
+                    <div class="corner-flowers"><span>🌷</span><span>🌸</span></div>
+                </div>
+                <div class="cover-back"></div>
+            </div>
+
+            <div class="details">
+                <h2>Untuk<br>Fitri Hasanah</h2>
+                <p>Selamat ulang tahun Fitri,</p>
+                <p>Di hari yang spesial ini, aku mendoakan segala yang terbaik untukmu.</p>
+                <p>Semoga kamu selalu bahagia, sehat, dan diberkahi dalam setiap langkahmu.</p>
+                
+                <p class="sender">Orang yang mencintaimu,<br>Imam ❤️</p>
+                
+                <button class="btn-next" onclick="goToPage2(event)">Ada Surat Lagi Buat Fitri... 💌</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="page2">
+        <div class="card-balikan" id="cardBalikan">
+            <div class="heart-icon">💖</div>
+            <h1>Fitri Hasanah</h1>
+            <p class="subtitle">
+                Ada banyak hal yang udah kita lewati bareng-bareng. Imam sadar, gak ada yang bisa gantiin posisi Fitri di hati Imam.
+            </p>
+            
+            <div class="question">
+                Fitri, mau kan balikan lagi sama Imam Dwi Putra? 🥺
+            </div>
+
+            <div class="btn-group" id="btnContainer">
+                <button class="btn-yes" id="btnYes" onclick="terima()">Mau Banget! 💕</button>
+                <button class="btn-no" id="btnNo">Enggak dulu</button>
+            </div>
+        </div>
+
+        <div class="popup-overlay" id="popup">
+            <div class="popup-content">
+                <div style="font-size: 44px; margin-bottom: 12px;">🥳🥰</div>
+                <h2>Makasih Banyak, Fitri!</h2>
+                <p>Imam janji bakal jaga dan sayang sama Fitri lebih baik lagi dari sebelumnya. Chat Imam sekarang ya! ❤️</p>
+                <a href="https://wa.me/6287737815596?text=Halo%20Imam,%20aku%20mau%20balikan%20sama%20kamu%20%E2%9D%A4%EF%B8%8F" target="_blank" class="wa-btn">
+                    Chat Imam di WA 📲
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCard(event) {
+            if (event) event.stopPropagation();
+            var card = document.getElementById("birthdayCard");
+            card.classList.toggle("open");
+        }
+
+        function goToPage2(event) {
+            event.stopPropagation();
+            document.getElementById('page1').style.display = 'none';
+            document.getElementById('page2').style.display = 'flex';
+        }
+
+        const btnNo = document.getElementById('btnNo');
+        const btnYes = document.getElementById('btnYes');
+
+        let clickCount = 0;
+        let noScale = 1;
+        let yesScale = 1;
+
+        function handleNoInteraction(e) {
+            if (e) e.preventDefault(); 
+            
+            clickCount++;
+
+            // Jika sudah 3 kali dicoba/ditekan
+            if (clickCount >= 3) {
+                btnNo.style.display = 'none'; // Sembunyikan tombol "Enggak dulu"
+                btnYes.style.transform = '';  // Reset transform bawaan
+                btnYes.classList.add('centered-large'); // Pindahkan ke tengah & membesar
+                return;
+            }
+
+            // Gerakan sebelum percobaan ke-3
+            const randomX = (Math.random() * 100) - 50;
+            const randomY = (Math.random() * 40) - 20;
+
+            noScale -= 0.15;
+            yesScale += 0.15;
+
+            btnNo.style.transform = `translate(${randomX}px, ${randomY}px) scale(${noScale})`;
+            btnYes.style.transform = `scale(${yesScale})`;
+        }
+
+        btnNo.addEventListener('mouseover', handleNoInteraction);
+        btnNo.addEventListener('click', handleNoInteraction);
+        btnNo.addEventListener('touchstart', handleNoInteraction);
+
+        function terima() {
+            document.getElementById('popup').style.display = 'flex';
+
+            confetti({
+                particleCount: 120,
+                spread: 80,
+                origin: { y: 0.6 }
+            });
+        }
+    </script>
+</body>
+</html>
